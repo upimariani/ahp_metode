@@ -9,15 +9,13 @@ class mDashboard extends CI_Model
 		$data['siswa'] = $this->db->query("SELECT COUNT(id_siswa) as jml_siswa FROM `siswa`")->row();
 		return $data;
 	}
-	public function hasil_ahp()
+	public function hasil_ahp($kelas, $angkatan)
 	{
-		$this->db->select('*');
-		$this->db->from('analisis_ahp');
-		$this->db->join('siswa', 'siswa.id_siswa = analisis_ahp.id_siswa', 'left');
-		$this->db->where('approved=1');
-
-		$this->db->order_by('hasil', 'desc');
-		return $this->db->get()->result();
+		return $this->db->query("SELECT * FROM siswa JOIN analisis_ahp ON analisis_ahp.id_siswa=siswa.id_siswa WHERE kelas='" . $kelas . "' AND angkatan='" . $angkatan . "' AND approved='1' ORDER BY hasil DESC limit 10")->result();
+	}
+	public function hasil()
+	{
+		return $this->db->query("SELECT * FROM siswa JOIN analisis_ahp ON analisis_ahp.id_siswa=siswa.id_siswa WHERE approved='1' ORDER BY hasil DESC limit 10")->result();
 	}
 }
 

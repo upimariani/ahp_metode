@@ -13,6 +13,17 @@
 					</ol>
 				</div>
 			</div>
+			<?php
+			if ($this->session->userdata('success')) {
+			?>
+				<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<h5><i class="icon fas fa-times"></i> Alert!</h5>
+					<?= $this->session->userdata('success') ?>
+				</div>
+			<?php
+			}
+			?>
 		</div><!-- /.container-fluid -->
 	</section>
 
@@ -34,14 +45,14 @@
 									<div class="col-lg-12">
 										<div class="form-group">
 											<label for="exampleInputPassword1">Nama Siswa</label>
-											<select name="siswa" class="form-control">
+											<select name="siswa" id="analisis_perhitungan" class="form-control">
 												<option value="">---Pilih Siswa---</option>
 												<?php
 												foreach ($siswa as $key => $value) {
 												?>
-													<option value="<?= $value->id_siswa ?>" <?php if (set_value('siswa') ==  $value->id_siswa) {
-																								echo 'selected';
-																							} ?>><?= $value->nama_siswa ?></option>
+													<option data-nilai="<?= $value->jml_nilai ?>" data-rata="<?= $value->rate / $value->jml_nilai ?>" value="<?= $value->id_siswa ?>" <?php if (set_value('siswa') ==  $value->id_siswa) {
+																																															echo 'selected';
+																																														} ?>><?= $value->nama_siswa ?></option>
 												<?php
 												}
 												?>
@@ -57,22 +68,63 @@
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label for="exampleInputPassword1">Penilaian Kehadiran</label>
-											<input type="text" value="<?= set_value('kehadiran') ?>" name="kehadiran" class="form-control" placeholder="Masukkan Penilaian Kehadiran">
+											<select name="kehadiran" class="form-control">
+												<option value="">---Pilih Penilaian Kehadiran---</option>
+												<option>Kurang</option>
+												<option>Cukup</option>
+												<option>Baik</option>
+											</select>
 											<?= form_error('kehadiran', '<small class="text-danger">', '</small>') ?>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label for="exampleInputPassword1">Penilaian Sikap</label>
-											<input type="text" value="<?= set_value('sikap') ?>" name="sikap" class="form-control" placeholder="Masukkan Penilaian Sikap">
+											<select name="sikap" class="form-control">
+												<option value="">---Pilih Penilaian Sikap---</option>
+												<option>Kurang</option>
+												<option>Cukup</option>
+												<option>Baik</option>
+											</select>
 											<?= form_error('sikap', '<small class="text-danger">', '</small>') ?>
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group">
+											<label for="exampleInputPassword1">Rata - Rata Raport</label>
+											<input type="text" name="raport" class="rata form-control" readonly>
+											<?= form_error('raport', '<small class="text-danger">', '</small>') ?>
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group">
+											<label for="exampleInputPassword1">Jumlah Nilai</label>
+											<input type="text" name="jml" class="nilai form-control" readonly>
+											<?= form_error('raport', '<small class="text-danger">', '</small>') ?>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
-											<label for="exampleInputPassword1">Penilaian Raport</label>
-											<input type="text" value="<?= set_value('raport') ?>" name="raport" class="form-control" placeholder="Masukkan Penilaian Raport">
-											<?= form_error('raport', '<small class="text-danger">', '</small>') ?>
+											<label for="exampleInputPassword1">Penilaian Sosial</label>
+											<select name="sosial" class="form-control">
+												<option value="">---Pilih Penilaian Sosial---</option>
+												<option>Kurang</option>
+												<option>Cukup</option>
+												<option>Baik</option>
+											</select>
+											<?= form_error('sosial', '<small class="text-danger">', '</small>') ?>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="exampleInputPassword1">Penilaian Spiritual</label>
+											<select name="spiritual" class="form-control">
+												<option value="">---Pilih Penilaian Spiritual---</option>
+												<option>Kurang</option>
+												<option>Cukup</option>
+												<option>Baik</option>
+											</select>
+											<?= form_error('spiritual', '<small class="text-danger">', '</small>') ?>
 										</div>
 									</div>
 								</div>

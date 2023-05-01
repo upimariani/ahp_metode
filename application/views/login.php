@@ -64,6 +64,14 @@
 							<label for="exampleInputPassword1">Password</label>
 							<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 						</div>
+						<hr>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Login Untuk...</label>
+							<select class="form-control" name="level">
+								<option value="1">Admin/Wali Kelas/Kepala Sekolah</option>
+								<option value="2">Guru Mata Pelajaran</option>
+							</select>
+						</div>
 					</div>
 
 					<div class="row">

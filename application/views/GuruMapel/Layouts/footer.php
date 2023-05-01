@@ -44,18 +44,6 @@
 <!-- Summernote -->
 <script src="<?= base_url('asset/AdminLTE/') ?>plugins/summernote/summernote-bs4.min.js"></script>
 <script>
-	console.log = function() {}
-	$("#analisis_perhitungan").on('change', function() {
-
-		$(".nilai").html($(this).find(':selected').attr('data-nilai'));
-		$(".nilai").val($(this).find(':selected').attr('data-nilai'));
-
-		$(".rata").html($(this).find(':selected').attr('data-rata'));
-		$(".rata").val($(this).find(':selected').attr('data-rata'));
-
-	});
-</script>
-<script>
 	$(function() {
 		// Summernote
 		$('.textarea').summernote()

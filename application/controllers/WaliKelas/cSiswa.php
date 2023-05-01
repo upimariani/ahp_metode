@@ -31,6 +31,7 @@ class cSiswa extends CI_Controller
 		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		$this->form_validation->set_rules('ttl', 'Tempat, Tanggal Lahir Siswa', 'required');
+		$this->form_validation->set_rules('angkatan', 'Tahun Angkatan Siswa', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('WaliKelas/Layouts/head');
@@ -43,6 +44,7 @@ class cSiswa extends CI_Controller
 				'id_user' => $this->session->userdata('id'),
 				'nama_siswa' => $this->input->post('nama'),
 				'kelas' => $this->input->post('kelas'),
+				'angkatan' => $this->input->post('angkatan'),
 				'alamat' => $this->input->post('alamat'),
 				'jk' => $this->input->post('jk'),
 				'nis' => $this->input->post('nis'),
@@ -55,10 +57,15 @@ class cSiswa extends CI_Controller
 	}
 	public function edit($id)
 	{
-		$this->form_validation->set_rules('nama', 'Nama siswa', 'required');
+
+		$this->form_validation->set_rules('nama', 'Nama Siswa', 'required');
+		$this->form_validation->set_rules('nis', 'NIS Siswa', 'required');
 		$this->form_validation->set_rules('kelas', 'Kelas siswa', 'required');
 		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required');
-		$this->form_validation->set_rules('nis', 'NIS', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('ttl', 'Tempat, Tanggal Lahir Siswa', 'required');
+		$this->form_validation->set_rules('angkatan', 'Tahun Angkatan Siswa', 'required');
+
 
 
 		if ($this->form_validation->run() == FALSE) {
@@ -72,10 +79,14 @@ class cSiswa extends CI_Controller
 			$this->load->view('WaliKelas/Layouts/footer');
 		} else {
 			$data = array(
-				'nis' => $this->input->post('nis'),
 				'nama_siswa' => $this->input->post('nama'),
 				'kelas' => $this->input->post('kelas'),
+				'angkatan' => $this->input->post('angkatan'),
+				'alamat' => $this->input->post('alamat'),
 				'jk' => $this->input->post('jk'),
+				'nis' => $this->input->post('nis'),
+				'ttl' => $this->input->post('ttl'),
+
 			);
 			$this->msiswa->update($id, $data);
 			$this->session->set_flashdata('success', 'Data siswa Berhasil Diperbaharui!');

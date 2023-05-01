@@ -33,59 +33,61 @@
 					<a href="#"><b>INFORMASI SISWA TERBAIK</b></a><br>
 					<h4><strong>SMK CINDEKIA UTAMA</strong></h4>
 					</a>
-				</div>
 
+				</div>
+				<a class="btn btn-danger mb-3" href="<?= base_url('Siswa/cInformasiSiswa') ?>">Kembali ...</a>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Informasi Siswa/Siswi Terbaik Periode</h3>
+								<h3 class="card-title">Informasi Siswa/Siswi Terbaik Periode Kelas <?= $kelas ?> Angkatan <?= $angkatan ?></h3>
 
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
-								<table id="example1" class="table table-bordered table-striped">
+								<table class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>No.</th>
-											<th>Kelas</th>
-											<th>Angkatan</th>
-											<th class="text-center">Action</th>
+											<th class="text-center">Rangking.</th>
+											<th class="text-center">Nama Siswa</th>
+											<th class="text-center">Angkatan Siswa</th>
+											<th class="text-center">Tanggal Proses</th>
+											<th class="text-center">Penilaian</th>
+											<th class="text-center">Hasil</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
 										$no = 1;
-										foreach ($periode as $key => $value) {
+										foreach ($view_periode as $key => $value) {
 										?>
 											<tr>
-												<td><?= $no++ ?></td>
-												<td><?= $value->kelas ?></td>
+												<td class="text-center"><?= $no++ ?>.</td>
+												<td><?= $value->nama_siswa ?></td>
 												<td><?= $value->angkatan ?></td>
-												<td class="text-center">
+												<td><?= $value->tgl_proses ?></td>
+												<td>Kehadiran: <?= $value->p_kehadiran ?><br>
+													Sikap: <?= $value->p_sikap ?><br>
+													Raport: <?= $value->p_raport ?>
+												<td><?= $value->hasil ?></td>
 
-
-													<a href="<?= base_url('Siswa/cInformasiSiswa/viewList/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
-														<i class="fas fa-info"></i> View
-													</a>
-
-												</td>
 											</tr>
 										<?php
 										}
 										?>
+
 									</tbody>
 									<tfoot>
 										<tr>
-										<tr>
-											<th>No.</th>
-											<th>Kelas</th>
-											<th>Angkatan</th>
-											<th>Action</th>
-
-										</tr>
+											<th class="text-center">Rangking.</th>
+											<th class="text-center">Nama Siswa</th>
+											<th class="text-center">Angkatan Siswa</th>
+											<th class="text-center">Tanggal Proses</th>
+											<th class="text-center">Penilaian</th>
+											<th class="text-center">Hasil</th>
 										</tr>
 									</tfoot>
+								</table>
 							</div>
 							<!-- /.card-body -->
 						</div>

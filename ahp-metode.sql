@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Mar 2023 pada 15.24
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 25 Mar 2023 pada 04.26
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,7 +45,8 @@ CREATE TABLE `analisis_ahp` (
 
 INSERT INTO `analisis_ahp` (`id_ahp`, `id_siswa`, `tgl_proses`, `p_kehadiran`, `p_sikap`, `p_raport`, `hasil`, `approved`) VALUES
 (1, 1, '2023-03-12', 69, 79, 70, '0.11885924925478', 1),
-(2, 2, '2023-03-15', 75, 90, 92, '0.3776230982909', 0);
+(2, 2, '2023-03-12', 90, 89, 92, '0.57638451525478', 1),
+(3, 3, '2023-03-23', 89, 80, 78, '0.23564428925478', 1);
 
 -- --------------------------------------------------------
 
@@ -57,6 +59,7 @@ CREATE TABLE `siswa` (
   `id_user` int(11) NOT NULL,
   `nama_siswa` varchar(125) NOT NULL,
   `kelas` varchar(30) NOT NULL,
+  `angkatan` int(11) NOT NULL,
   `alamat` text NOT NULL,
   `jk` varchar(20) NOT NULL,
   `nis` varchar(15) NOT NULL,
@@ -68,9 +71,10 @@ CREATE TABLE `siswa` (
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `id_user`, `nama_siswa`, `kelas`, `alamat`, `jk`, `nis`, `ttl`, `status`) VALUES
-(1, 1, 'Dahlan', '7', 'Ciawigebang, Kuningan', 'Laki-Laki', '32569875', 'Kuningan, 05 November 2022', 1),
-(2, 1, 'Siti', '7', 'Kuningan', 'Perempuan', '21355212', 'Kuningan, 32 Januari 1997', 1);
+INSERT INTO `siswa` (`id_siswa`, `id_user`, `nama_siswa`, `kelas`, `angkatan`, `alamat`, `jk`, `nis`, `ttl`, `status`) VALUES
+(1, 1, 'Dahlan', '7', 2017, 'Ciawigebang, Kuningan', 'Laki-Laki', '32569875', 'Kuningan, 05 November 2022', 1),
+(2, 1, 'Siti', '7', 2017, 'Kuningan', 'Perempuan', '21355212', 'Kuningan, 32 Januari 1997', 1),
+(3, 1, 'Rahmat', '8', 2018, 'Kuningan', 'Laki-Laki', '5213654', 'Kuningan, 05 April 2022', 1);
 
 -- --------------------------------------------------------
 
@@ -128,7 +132,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `analisis_ahp`
 --
 ALTER TABLE `analisis_ahp`
-  MODIFY `id_ahp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ahp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`

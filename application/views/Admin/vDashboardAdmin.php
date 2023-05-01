@@ -59,7 +59,7 @@
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Informasi Hasil Analisis</h3>
+							<h3 class="card-title">Informasi Hasil Analisis Peringkat Umum</h3>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">

@@ -71,12 +71,19 @@
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
+											<label for="exampleInputPassword1">Angkatan</label>
+											<input type="number" value="<?= set_value('angkatan') ?>" name="angkatan" class="form-control" placeholder="Masukkan Tahun Angkatan">
+											<?= form_error('angkatan', '<small class="text-danger">', '</small>') ?>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
 											<label for="exampleInputPassword1">Tempat, Tanggal Lahir</label>
 											<input type="text" value="<?= set_value('ttl') ?>" name="ttl" class="form-control" placeholder="Masukkan Tempat, Tanggal Lahir">
 											<?= form_error('ttl', '<small class="text-danger">', '</small>') ?>
 										</div>
 									</div>
-									<div class="col-lg-6">
+									<div class="col-lg-12">
 										<div class="form-group">
 											<label for="exampleInputPassword1">Alamat</label>
 											<input type="text" value="<?= set_value('alamat') ?>" name="alamat" class="form-control" placeholder="Masukkan alamat">

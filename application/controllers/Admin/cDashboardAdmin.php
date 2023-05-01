@@ -14,7 +14,7 @@ class cDashboardAdmin extends CI_Controller
 	{
 		$data = array(
 			'jml' => $this->mDashboard->jml(),
-			'hasil' => $this->mDashboard->hasil_ahp()
+			'hasil' => $this->mDashboard->hasil()
 		);
 		$this->load->view('Admin/Layouts/head');
 		$this->load->view('Admin/Layouts/navbar');

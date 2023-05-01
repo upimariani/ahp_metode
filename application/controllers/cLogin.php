@@ -15,28 +15,53 @@ class cLogin extends CI_Controller
 	}
 	public function login()
 	{
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$data = $this->mLogin->login($username, $password);
-		if ($data) {
-			$id = $data->id_user;
-			$this->session->set_userdata('id', $id);
-			if ($data->level_user == '1') {
+		//mengambil data level terlebih dahulu
+		$level = $this->input->post('level');
+		if ($level == '1') {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$data = $this->mLogin->login($username, $password);
+			if ($data) {
+				$id = $data->id_user;
+				$this->session->set_userdata('id', $id);
+				if ($data->level_user == '1') {
 
-				redirect('Admin/cDashboardAdmin');
-			} else if ($data->level_user == '2') {
-				redirect('WaliKelas/cDashboardWaliKelas');
+					redirect('Admin/cDashboardAdmin');
+				} else if ($data->level_user == '2') {
+					redirect('WaliKelas/cDashboardWaliKelas');
+				} else {
+					redirect('KepalaSekolah/cDashboardKepalaSekolah');
+				}
 			} else {
-				redirect('KepalaSekolah/cDashboardKepalaSekolah');
+				$this->session->set_flashdata('error', 'Username dan Password Salah!');
+				redirect('');
 			}
 		} else {
-			$this->session->set_flashdata('error', 'Username dan Password Salah!');
-			redirect('');
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$data = $this->mLogin->login_guru($username, $password);
+			if ($data) {
+				$id_guru = $data->id_guru;
+				$mapel = $data->mapel;
+
+				$array = array(
+					'id' => $id_guru,
+					'mapel' => $mapel
+				);
+
+				$this->session->set_userdata($array);
+
+				redirect('GuruMapel/cDashboardGuru', 'refresh');
+			} else {
+				$this->session->set_flashdata('error', 'Username dan Password Salah!');
+				redirect('');
+			}
 		}
 	}
 	public function logout()
 	{
 		$this->session->unset_userdata('id');
+		$this->session->unset_userdata('mapel');
 		$this->session->set_flashdata('success', 'Anda Berhasil LogOut!');
 		redirect('');
 	}

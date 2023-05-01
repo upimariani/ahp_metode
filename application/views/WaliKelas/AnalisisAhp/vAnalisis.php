@@ -44,6 +44,7 @@
 									<tr>
 										<th class="text-center">No.</th>
 										<th class="text-center">Nama Siswa</th>
+										<th class="text-center">Angkatan Siswa</th>
 										<th class="text-center">Tanggal Proses</th>
 										<th class="text-center">Penilaian</th>
 										<th class="text-center">Hasil</th>
@@ -59,6 +60,7 @@
 										<tr>
 											<td><?= $no++ ?></td>
 											<td><?= $value->nama_siswa ?></td>
+											<td><?= $value->angkatan ?></td>
 											<td><?= $value->tgl_proses ?></td>
 											<td>Kehadiran: <?= $value->p_kehadiran ?><br>
 												Sikap: <?= $value->p_sikap ?><br>

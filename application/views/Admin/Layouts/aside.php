@@ -41,6 +41,16 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="<?= base_url('Admin/cGuruMapel') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cGuruMapel') {
+																						echo 'active';
+																					}  ?>">
+						<i class="nav-icon fas fa-users"></i>
+						<p>
+							Guru Mata Pelajaran
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="<?= base_url('clogin/logout') ?>" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>

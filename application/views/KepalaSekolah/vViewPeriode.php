@@ -5,7 +5,9 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Hasil Analisis Perhitungan Metode AHP</h1>
+					<h1>Hasil Analisis Perhitungan Metode AHP Periode Angkatan <?= $angkatan ?> Kelas <?= $kelas ?></h1><br>
+					<button type="button" class="btn btn-success" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -34,30 +36,31 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Informasi Hasil Analisis Perhitungan Metode AHP</h3><br>
+							<h3 class="card-title">Informasi Hasil Analisis Perhitungan Metode AHP Periode Angkatan <?= $angkatan ?> Kelas <?= $kelas ?></h3><br>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
-							<table id="example1" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th class="text-center">No.</th>
 										<th class="text-center">Nama Siswa</th>
+										<th class="text-center">Angkatan Siswa</th>
 										<th class="text-center">Tanggal Proses</th>
 										<th class="text-center">Penilaian</th>
 										<th class="text-center">Hasil</th>
 										<th class="text-center">Approved</th>
-										<th class="text-center">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 									$no = 1;
-									foreach ($analisis as $key => $value) {
+									foreach ($view_periode as $key => $value) {
 									?>
 										<tr>
-											<td><?= $no++ ?></td>
+											<td class="text-center"><?= $no++ ?>.</td>
 											<td><?= $value->nama_siswa ?></td>
+											<td><?= $value->angkatan ?></td>
 											<td><?= $value->tgl_proses ?></td>
 											<td>Kehadiran: <?= $value->p_kehadiran ?><br>
 												Sikap: <?= $value->p_sikap ?><br>
@@ -73,18 +76,6 @@
 												<?php
 												} ?>
 											</td>
-											<td class="text-center">
-												<?php
-												if ($value->approved == '0') {
-												?>
-
-													<a href="<?= base_url('KepalaSekolah/cHasilAhp/approved/' . $value->id_ahp) ?>" class="btn btn-app btn-sm">
-														<i class="fas fa-check"></i> Approved
-													</a>
-												<?php
-												}
-												?>
-											</td>
 										</tr>
 									<?php
 									}
@@ -95,11 +86,11 @@
 									<tr>
 										<th class="text-center">No.</th>
 										<th class="text-center">Nama Siswa</th>
+										<th class="text-center">Angkatan Siswa</th>
 										<th class="text-center">Tanggal Proses</th>
-										<th class="text-center">Penilaian </th>
+										<th class="text-center">Penilaian</th>
 										<th class="text-center">Hasil</th>
 										<th class="text-center">Approved</th>
-										<th class="text-center">Action</th>
 									</tr>
 								</tfoot>
 							</table>

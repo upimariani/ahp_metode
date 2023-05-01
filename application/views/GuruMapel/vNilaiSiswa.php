@@ -5,12 +5,14 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Informasi Siswa</h1>
+					<h1>Nilai <?= $this->session->userdata('mapel') ?> </h1><br>
+					<!-- <button type="button" class="btn btn-success" onclick="window.print()"><i class="fas fa-print"></i> Print</button> -->
+
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Siswa</li>
+						<li class="breadcrumb-item active">Nilai Siswa</li>
 					</ol>
 				</div>
 			</div>
@@ -31,12 +33,10 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-12">
+				<div class="col-6">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">Informasi Siswa</h3><br>
-							<a href="<?= base_url('WaliKelas/cSiswa/create') ?>" class="btn btn-warning mt-3">Create New Siswa</a>
-
+							<h3 class="card-title">Informasi Kelas Angkatan Siswa</h3><br>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
@@ -44,54 +44,36 @@
 								<thead>
 									<tr>
 										<th class="text-center">No.</th>
-										<th class="text-center">NIS</th>
-										<th class="text-center">Nama Siswa</th>
 										<th class="text-center">Kelas</th>
-										<th class="text-center">Angkatan</th>
-										<th class="text-center">Jenis Kelamin</th>
-										<th class="text-center">Tempat, Tanggal Lahir</th>
-										<th class="text-center">Alamat</th>
-										<th class="text-center">Action</th>
+										<th class="text-center">Angkatan Siswa</th>
+										<th class="text-center">View</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 									$no = 1;
-									foreach ($siswa as $key => $value) {
+									foreach ($periode as $key => $value) {
 									?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $value->nis ?></td>
-											<td><?= $value->nama_siswa ?></td>
 											<td><?= $value->kelas ?></td>
 											<td><?= $value->angkatan ?></td>
-											<td><?= $value->jk ?></td>
-											<td><?= $value->ttl ?></td>
-											<td><?= $value->alamat ?></td>
-											<td class="text-center">
-												<a href="<?= base_url('WaliKelas/cSiswa/edit/' . $value->id_siswa) ?>" class="btn btn-app btn-sm">
-													<i class="fas fa-edit"></i> Edit
-												</a>
-												<a href="<?= base_url('WaliKelas/cSiswa/delete/' . $value->id_siswa) ?>" class="btn btn-app btn-sm">
-													<i class="fas fa-trash"></i> Delete
-												</a>
-											</td>
+											<td> <a href="<?= base_url('GuruMapel/cNilaiSiswa/view_siswa/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
+													<i class="fas fa-eye"></i> View
+												</a></td>
 										</tr>
+
 									<?php
 									}
 									?>
-
 								</tbody>
 								<tfoot>
-									<th class="text-center">No.</th>
-									<th class="text-center">NIS</th>
-									<th class="text-center">Nama Siswa</th>
-									<th class="text-center">Kelas</th>
-									<th class="text-center">Angkatan</th>
-									<th class="text-center">Jenis Kelamin</th>
-									<th class="text-center">Tempat, Tanggal Lahir</th>
-									<th class="text-center">Alamat</th>
-									<th class="text-center">Action</th>
+									<tr>
+										<th class="text-center">No.</th>
+										<th class="text-center">Kelas</th>
+										<th class="text-center">Angkatan Siswa</th>
+										<th class="text-center">View</th>
+									</tr>
 								</tfoot>
 							</table>
 						</div>

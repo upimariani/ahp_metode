@@ -84,6 +84,7 @@
 												<option value="1">Admin</option>
 												<option value="2">Wali Kelas</option>
 												<option value="3">Kepala Sekolah</option>
+												<option value="4">Guru Mata Pelajaran</option>
 											</select>
 										</div>
 									</div>

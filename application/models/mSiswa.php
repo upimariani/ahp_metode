@@ -11,6 +11,7 @@ class mSiswa extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('siswa');
+		$this->db->where('id_user', $this->session->userdata('id'));
 		return $this->db->get()->result();
 	}
 	public function edit($id)

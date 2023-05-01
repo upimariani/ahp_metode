@@ -7,15 +7,26 @@ class cInformasiSiswa extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('mDashboard');
+		$this->load->model('mAnalisisAhp');
 	}
 
 
 	public function index()
 	{
 		$data = array(
-			'hasil' => $this->mDashboard->hasil_ahp()
+			'periode' => $this->mAnalisisAhp->periode(),
+
 		);
 		$this->load->view('vList', $data);
+	}
+	public function viewList($kelas, $angkatan)
+	{
+		$data = array(
+			'view_periode' => $this->mDashboard->hasil_ahp($kelas, $angkatan),
+			'kelas' => $kelas,
+			'angkatan' => $angkatan
+		);
+		$this->load->view('vViewList', $data);
 	}
 }
 
