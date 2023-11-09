@@ -8,6 +8,7 @@ class cSiswa extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('msiswa');
+		// $this->load->library(array('excel', 'session'));
 	}
 
 
@@ -17,11 +18,11 @@ class cSiswa extends CI_Controller
 		$data = array(
 			'siswa' => $this->msiswa->select()
 		);
-		$this->load->view('WaliKelas/Layouts/head');
-		$this->load->view('WaliKelas/Layouts/navbar');
-		$this->load->view('WaliKelas/Layouts/aside');
-		$this->load->view('WaliKelas/siswa/siswa', $data);
-		$this->load->view('WaliKelas/Layouts/footer');
+		$this->load->view('Admin/Layouts/head');
+		$this->load->view('Admin/Layouts/navbar');
+		$this->load->view('Admin/Layouts/aside');
+		$this->load->view('Admin/Siswa/siswa', $data);
+		$this->load->view('Admin/Layouts/footer');
 	}
 	public function create()
 	{
@@ -34,11 +35,11 @@ class cSiswa extends CI_Controller
 		$this->form_validation->set_rules('angkatan', 'Tahun Angkatan Siswa', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('WaliKelas/Layouts/head');
-			$this->load->view('WaliKelas/Layouts/navbar');
-			$this->load->view('WaliKelas/Layouts/aside');
-			$this->load->view('WaliKelas/siswa/create');
-			$this->load->view('WaliKelas/Layouts/footer');
+			$this->load->view('Admin/Layouts/head');
+			$this->load->view('Admin/Layouts/navbar');
+			$this->load->view('Admin/Layouts/aside');
+			$this->load->view('Admin/siswa/create');
+			$this->load->view('Admin/Layouts/footer');
 		} else {
 			$data = array(
 				'id_user' => $this->session->userdata('id'),
@@ -52,7 +53,7 @@ class cSiswa extends CI_Controller
 			);
 			$this->msiswa->insert($data);
 			$this->session->set_flashdata('success', 'Data siswa Berhasil Ditambahkan!');
-			redirect('WaliKelas/cSiswa');
+			redirect('Admin/cSiswa');
 		}
 	}
 	public function edit($id)
@@ -72,11 +73,11 @@ class cSiswa extends CI_Controller
 			$data = array(
 				'siswa' => $this->msiswa->edit($id)
 			);
-			$this->load->view('WaliKelas/Layouts/head');
-			$this->load->view('WaliKelas/Layouts/navbar');
-			$this->load->view('WaliKelas/Layouts/aside');
-			$this->load->view('WaliKelas/siswa/update', $data);
-			$this->load->view('WaliKelas/Layouts/footer');
+			$this->load->view('Admin/Layouts/head');
+			$this->load->view('Admin/Layouts/navbar');
+			$this->load->view('Admin/Layouts/aside');
+			$this->load->view('Admin/siswa/update', $data);
+			$this->load->view('Admin/Layouts/footer');
 		} else {
 			$data = array(
 				'nama_siswa' => $this->input->post('nama'),
@@ -90,13 +91,57 @@ class cSiswa extends CI_Controller
 			);
 			$this->msiswa->update($id, $data);
 			$this->session->set_flashdata('success', 'Data siswa Berhasil Diperbaharui!');
-			redirect('WaliKelas/cSiswa');
+			redirect('Admin/cSiswa');
 		}
 	}
 	public function delete($id)
 	{
 		$this->msiswa->delete($id);
 		$this->session->set_flashdata('success', 'Data siswa Berhasil Dihapus!');
+		redirect('Admin/cSiswa');
+	}
+
+	//excel reader
+	public function upload_excel()
+	{
+		include "asset/excel_reader2.php";
+		// upload file xls
+		$target = basename($_FILES['filepegawai']['name']);
+		move_uploaded_file($_FILES['filepegawai']['tmp_name'], $target);
+
+		// beri permisi agar file xls dapat di baca
+		chmod($_FILES['filepegawai']['name'], 0777);
+
+		// mengambil isi file xls
+		$data = new Spreadsheet_Excel_Reader($_FILES['filepegawai']['name'], false);
+		// menghitung jumlah baris data yang ada
+		$jumlah_baris = $data->rowcount($sheet_index = 0);
+
+		// jumlah default data yang berhasil di import
+		$berhasil = 0;
+		for ($i = 2; $i <= $jumlah_baris; $i++) {
+
+			// menangkap data dan memasukkan ke variabel sesuai dengan kolumnya masing-masing
+			$id_user     = $this->session->userdata('id');
+			$nama_siswa   = $data->val($i, 1);
+			$kelas  = $data->val($i, 2);
+			$angkatan  = $data->val($i, 3);
+			$alamat  = $data->val($i, 4);
+			$jk  = $data->val($i, 5);
+			$nis  = $data->val($i, 6);
+			$ttl  = $data->val($i, 7);
+
+			if ($nama_siswa != "" && $kelas != "" && $angkatan != "" && $alamat != "" && $jk != "" && $nis != "" && $ttl != "") {
+				// input data ke database (table data_pegawai)
+				$this->db->query("INSERT into siswa values('','$id_user','$nama_siswa','$kelas','$angkatan','$alamat','$jk','$nis','$ttl','0')");
+				$berhasil++;
+			}
+		}
+
+		// hapus kembali file .xls yang di upload tadi
+		unlink($_FILES['filepegawai']['name']);
+
+		// alihkan halaman ke index.php
 		redirect('WaliKelas/cSiswa');
 	}
 }

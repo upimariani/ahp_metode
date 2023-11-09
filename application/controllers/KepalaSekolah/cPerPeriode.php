@@ -19,6 +19,17 @@ class cPerPeriode extends CI_Controller
 		$this->load->view('KepalaSekolah/vPerPeriode', $data);
 		$this->load->view('KepalaSekolah/Layouts/footer');
 	}
+	public function kelas($angkatan)
+	{
+		$data = array(
+			'kelas' => $this->mAnalisisAhp->kelas($angkatan)
+		);
+		$this->load->view('KepalaSekolah/Layouts/head');
+		$this->load->view('KepalaSekolah/Layouts/navbar');
+		$this->load->view('KepalaSekolah/Layouts/aside');
+		$this->load->view('KepalaSekolah/vKelas', $data);
+		$this->load->view('KepalaSekolah/Layouts/footer');
+	}
 	public function view_data($kelas, $angkatan)
 	{
 		$data = array(

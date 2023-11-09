@@ -62,41 +62,47 @@ class cAnalisisAhp extends CI_Controller
 				$p_kehadiran = $this->input->post('kehadiran');
 				$p_sikap = $this->input->post('sikap');
 				$p_raport = $this->input->post('raport');
+				$p_sosial = $this->input->post('sosial');
+				$p_spiritual = $this->input->post('spiritual');
 
 				//kosistensi
 				//kehadiran = 0,681466667
 				//sikap = 0,235633333
 				//raport = 0,082833333
 
-				$kehadiran = 0.681466667;
-				$sikap = 0.235633333;
-				$raport = 0.082833333;
+				$kehadiran = 0.6815629;
+				$sikap = 0.28067;
+				$raport = 0.07046;
+				$sosial = 0.54801;
+				$spiritual = 0.14528;
 
 
-				$ev_kehadiran = 0;
-				$ev_sikap = 0;
-				$ev_raport = 0;
+				// $ev_kehadiran = 0;
+				// $ev_sikap = 0;
+				// $ev_raport = 0;
+				// $ev_sosial = 0;
+				// $ev_spiritual = 0;
 
-				//kehadiran 
-				if ($p_kehadiran <= 70) {
-					$ev_kehadiran = 0.08286;
-				} else if ($p_kehadiran <= 89) {
-					$ev_kehadiran = 0.23566;
-				} else if ($p_kehadiran <= 100) {
-					$ev_kehadiran = 0.68148;
-				}
+				// //kehadiran 
+				// if ($p_kehadiran <= 70) {
+				// 	$ev_kehadiran = 0.08286;
+				// } else if ($p_kehadiran <= 89) {
+				// 	$ev_kehadiran = 0.23566;
+				// } else if ($p_kehadiran <= 100) {
+				// 	$ev_kehadiran = 0.68148;
+				// }
 
-				echo '<br>';
+				// echo '<br>';
 
-				//sikap
-				if ($p_sikap <= 70) {
-					$ev_sikap = 0.08286;
-				} else if ($p_sikap <= 89) {
-					$ev_sikap = 0.23566;
-				} else if ($p_sikap <= 100) {
-					$ev_sikap = 0.68148;
-				}
-				echo '<br>';
+				// //sikap
+				// if ($p_sikap <= 70) {
+				// 	$ev_sikap = 0.08286;
+				// } else if ($p_sikap <= 89) {
+				// 	$ev_sikap = 0.23566;
+				// } else if ($p_sikap <= 100) {
+				// 	$ev_sikap = 0.68148;
+				// }
+				// echo '<br>';
 
 				//raport
 				if ($p_raport <= 70) {
@@ -107,15 +113,38 @@ class cAnalisisAhp extends CI_Controller
 					$ev_raport = 0.68148;
 				}
 
+
+				// //sosial
+				// if ($p_sosial <= 70) {
+				// 	$ev_sosial = 0.08286;
+				// } else if ($p_sosial <= 89) {
+				// 	$ev_sosial = 0.23566;
+				// } else if ($p_sosial <= 100) {
+				// 	$ev_sosial = 0.68148;
+				// }
+
+				// //spiritual
+				// if ($p_spiritual <= 70) {
+				// 	$ev_spiritual = 0.08286;
+				// } else if ($p_spiritual <= 89) {
+				// 	$ev_spiritual = 0.23566;
+				// } else if ($p_spiritual <= 100) {
+				// 	$ev_spiritual = 0.68148;
+				// }
+
 				$t_kehadiran = 0;
 				$t_sikap = 0;
 				$t_raport = 0;
+				$t_sosial = 0;
+				$t_spiritual = 0;
 
-				$t_kehadiran = $ev_kehadiran * $kehadiran;
-				$t_sikap = $ev_sikap * $sikap;
+				$t_kehadiran = $p_kehadiran * $kehadiran;
+				$t_sikap = $p_sikap * $sikap;
 				$t_raport = $ev_raport * $raport;
+				$t_sosial = $p_sosial * $sosial;
+				$t_spiritual = $p_spiritual * $spiritual;
 
-				$hasil = $t_kehadiran + $t_sikap + $t_raport;
+				$hasil = $t_kehadiran + $t_sikap + $t_raport + $t_sosial + $t_spiritual;
 
 				$data = array(
 					'id_siswa' => $this->input->post('siswa'),
@@ -123,8 +152,10 @@ class cAnalisisAhp extends CI_Controller
 					'p_kehadiran' => $p_kehadiran,
 					'p_sikap' => $p_sikap,
 					'p_raport' => $p_raport,
+					'p_sosial' => $p_sosial,
+					'p_spiritual' => $p_spiritual,
 					'hasil' => $hasil,
-					'approved' => '0'
+					'approved' => '1'
 				);
 				$this->mAnalisisAhp->save_hasil($data);
 

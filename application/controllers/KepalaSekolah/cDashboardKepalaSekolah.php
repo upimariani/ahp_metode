@@ -14,7 +14,7 @@ class cDashboardKepalaSekolah extends CI_Controller
 	{
 		$data = array(
 			'jml' => $this->mDashboard->jml(),
-			'hasil' => $this->mDashboard->hasil()
+			'hasil' => $this->db->query("SELECT * FROM `analisis_ahp` JOIN siswa ON analisis_ahp.id_siswa=siswa.id_siswa  GROUP BY kelas, angkatan ORDER BY kelas, angkatan DESC LIMIT 4")->result()
 		);
 		$this->load->view('KepalaSekolah/Layouts/head');
 		$this->load->view('KepalaSekolah/Layouts/navbar');
