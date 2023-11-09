@@ -33,7 +33,7 @@
 
 
 
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a href="<?= base_url('KepalaSekolah/cHasilAhp') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'KepalaSekolah' && $this->uri->segment(2) == 'cHasilAhp') {
 																								echo 'active';
 																							}  ?>">
@@ -42,7 +42,7 @@
 							Hasil Metode AHP
 						</p>
 					</a>
-				</li>
+				</li> -->
 				<li class="nav-item">
 					<a href="<?= base_url('KepalaSekolah/cPerPeriode') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'KepalaSekolah' && $this->uri->segment(2) == 'cPerPeriode') {
 																								echo 'active';

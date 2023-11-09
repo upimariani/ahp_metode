@@ -11,7 +11,7 @@ class mSiswa extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('siswa');
-		$this->db->where('id_user', $this->session->userdata('id'));
+		// $this->db->where('id_user', $this->session->userdata('id'));
 		return $this->db->get()->result();
 	}
 	public function edit($id)
@@ -30,6 +30,14 @@ class mSiswa extends CI_Model
 	{
 		$this->db->where('id_siswa', $id);
 		$this->db->delete('siswa');
+	}
+
+	public function insertxcell($data)
+	{
+		$insert = $this->db->insert_batch('siswa', $data);
+		if ($insert) {
+			return true;
+		}
 	}
 }
 

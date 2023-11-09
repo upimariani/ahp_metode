@@ -70,9 +70,9 @@
 											<label for="exampleInputPassword1">Penilaian Kehadiran</label>
 											<select name="kehadiran" class="form-control">
 												<option value="">---Pilih Penilaian Kehadiran---</option>
-												<option>Kurang</option>
-												<option>Cukup</option>
-												<option>Baik</option>
+												<option value="0.08286">Kurang</option>
+												<option value="0.23566">Cukup</option>
+												<option value="0.68148">Baik</option>
 											</select>
 											<?= form_error('kehadiran', '<small class="text-danger">', '</small>') ?>
 										</div>
@@ -82,9 +82,9 @@
 											<label for="exampleInputPassword1">Penilaian Sikap</label>
 											<select name="sikap" class="form-control">
 												<option value="">---Pilih Penilaian Sikap---</option>
-												<option>Kurang</option>
-												<option>Cukup</option>
-												<option>Baik</option>
+												<option value="0.08286">Kurang</option>
+												<option value="0.23566">Cukup</option>
+												<option value="0.68148">Baik</option>
 											</select>
 											<?= form_error('sikap', '<small class="text-danger">', '</small>') ?>
 										</div>
@@ -108,9 +108,9 @@
 											<label for="exampleInputPassword1">Penilaian Sosial</label>
 											<select name="sosial" class="form-control">
 												<option value="">---Pilih Penilaian Sosial---</option>
-												<option>Kurang</option>
-												<option>Cukup</option>
-												<option>Baik</option>
+												<option value="0.08286">Kurang</option>
+												<option value="0.23566">Cukup</option>
+												<option value="0.68148">Baik</option>
 											</select>
 											<?= form_error('sosial', '<small class="text-danger">', '</small>') ?>
 										</div>
@@ -120,9 +120,9 @@
 											<label for="exampleInputPassword1">Penilaian Spiritual</label>
 											<select name="spiritual" class="form-control">
 												<option value="">---Pilih Penilaian Spiritual---</option>
-												<option>Kurang</option>
-												<option>Cukup</option>
-												<option>Baik</option>
+												<option value="0.08286">Kurang</option>
+												<option value="0.23566">Cukup</option>
+												<option value="0.68148">Baik</option>
 											</select>
 											<?= form_error('spiritual', '<small class="text-danger">', '</small>') ?>
 										</div>

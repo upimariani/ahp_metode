@@ -43,6 +43,7 @@
 <script src="<?= base_url('asset/AdminLTE/') ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Summernote -->
 <script src="<?= base_url('asset/AdminLTE/') ?>plugins/summernote/summernote-bs4.min.js"></script>
+<!-- <script src="<?= base_url('asset/excel_reader2.php') ?>"></script> -->
 <script>
 	console.log = function() {}
 	$("#analisis_perhitungan").on('change', function() {

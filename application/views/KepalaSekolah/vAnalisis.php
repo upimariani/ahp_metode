@@ -46,8 +46,8 @@
 										<th class="text-center">Tanggal Proses</th>
 										<th class="text-center">Penilaian</th>
 										<th class="text-center">Hasil</th>
-										<th class="text-center">Approved</th>
-										<th class="text-center">Action</th>
+										<!-- <th class="text-center">Approved</th> -->
+										<!-- <th class="text-center">Action</th> -->
 									</tr>
 								</thead>
 								<tbody>
@@ -63,15 +63,15 @@
 												Sikap: <?= $value->p_sikap ?><br>
 												Raport: <?= $value->p_raport ?>
 											<td><?= $value->hasil ?></td>
-											<td><?php if ($value->approved == '0') {
-												?>
+											<!-- <td><?php if ($value->approved == '0') {
+														?>
 													<span class="badge badge-danger">Dalam Proses Approve</span>
 												<?php
-												} else {
+														} else {
 												?>
 													<span class="badge badge-success">Sudah Approve</span>
 												<?php
-												} ?>
+														} ?>
 											</td>
 											<td class="text-center">
 												<?php
@@ -84,7 +84,7 @@
 												<?php
 												}
 												?>
-											</td>
+											</td> -->
 										</tr>
 									<?php
 									}

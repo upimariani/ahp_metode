@@ -7,6 +7,7 @@
 				<div class="col-sm-6">
 					<h1>Nilai <?= $this->session->userdata('mapel') ?> Siswa Kelas <?= $kelas ?> Angkatan <?= $angkatan ?> </h1><br>
 					<button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-success"><i class="fas fa-plus"></i> Tambah Nilai Siswa</button>
+					<button type="button" data-toggle="modal" data-target="#modal-excel" class="btn btn-warning"><i class="fas fa-plus"></i> Tambah Nilai Upload Excel</button>
 
 				</div>
 				<div class="col-sm-6">
@@ -51,6 +52,7 @@
 										<th class="text-center">Kelas</th>
 										<th class="text-center">Angkatan Siswa</th>
 										<th class="text-center">Nilai</th>
+										<th class="text-center">Action</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -67,7 +69,14 @@
 											<td><?= $value->kelas ?></td>
 											<td><?= $value->angkatan ?></td>
 											<td><?= $value->nilai ?></td>
+											<td class="text-center">
+												<button type="button" data-toggle="modal" data-target="#modal-edit<?= $value->id_nilai ?>" class="btn btn-app btn-sm"><i class="fas fa-edit"></i> Edit</button>
 
+
+												<a href="<?= base_url('GuruMapel/cNilaiSiswa/delete/' . $value->id_nilai . '/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
+													<i class="fas fa-trash"></i> Delete
+												</a>
+											</td>
 										</tr>
 
 									<?php
@@ -84,6 +93,7 @@
 										<th class="text-center">Kelas</th>
 										<th class="text-center">Angkatan Siswa</th>
 										<th class="text-center">Nilai</th>
+										<th class="text-center">Action</th>
 									</tr>
 								</tfoot>
 							</table>
@@ -100,6 +110,46 @@
 	</section>
 	<!-- /.content -->
 </div>
+<?php
+foreach ($view_nilai as $key => $value) {
+?>
+	<div class="modal fade" id="modal-edit<?= $value->id_nilai ?>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Perbaharui Data Nilai <?= $this->session->userdata('mapel') ?></h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form role="form" action="<?= base_url('GuruMapel/cNilaiSiswa/update/' . $value->id_nilai . '/' . $value->kelas . '/' . $value->angkatan) ?>" method="POST">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label for="exampleInputPassword1">Nilai <?= $this->session->userdata('mapel') ?></label>
+										<input type="text" name="nilai" value="<?= $value->nilai ?>" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Nilai Siswa" required>
+									</div>
+								</div>
+							</div>
+
+						</div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+<?php
+}
+?>
+
 <div class="modal fade" id="modal-default">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -121,7 +171,7 @@
 										<?php
 										foreach ($siswa as $key => $value) {
 										?>
-											<option value="<?= $value->id_siswa ?>"><?= $value->nama_siswa ?></option>
+											<option value="<?= $value->nama_siswa ?>"><?= $value->nama_siswa ?></option>
 										<?php
 										}
 										?>
@@ -142,6 +192,39 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Save changes</button>
 			</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-excel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Masukkan Data Nilai <?= $this->session->userdata('mapel') ?></h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form role="form" action="<?= base_url('GuruMapel/cNilaiSiswa/nilaiexcel/' . $kelas . '/' . $angkatan) ?>" enctype="multipart/form-data" method="POST">
+				<div class="modal-body">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="exampleInputPassword1">Nilai <?= $this->session->userdata('mapel') ?></label>
+									<input type="file" class="form-control" name="fileExcel" accept=".xls, .xlsx" required>
+									<?= form_error('file', '<div class="text-danger">', '</div>') ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
 			</form>
 		</div>
 		<!-- /.modal-content -->

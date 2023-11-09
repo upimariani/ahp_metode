@@ -42,7 +42,7 @@
 								<thead>
 									<tr>
 										<th class="text-center">No.</th>
-										<th class="text-center">Kelas</th>
+										<!-- <th class="text-center">Kelas</th> -->
 										<th class="text-center">Angkatan</th>
 										<th class="text-center">Action</th>
 									</tr>
@@ -54,12 +54,12 @@
 									?>
 										<tr>
 											<td class="text-center"><?= $no++ ?>.</td>
-											<td><?= $value->kelas ?></td>
+											<!-- <td><?= $value->kelas ?></td> -->
 											<td><?= $value->angkatan ?></td>
 											<td class="text-center">
 
 
-												<a href="<?= base_url('KepalaSekolah/cPerPeriode/view_data/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
+												<a href="<?= base_url('KepalaSekolah/cPerPeriode/kelas/' .  $value->angkatan) ?>" class="btn btn-app btn-sm">
 													<i class="fas fa-info"></i> View
 												</a>
 
@@ -73,7 +73,7 @@
 								<tfoot>
 									<tr>
 										<th class="text-center">No.</th>
-										<th class="text-center">Kelas</th>
+										<!-- <th class="text-center">Kelas</th> -->
 										<th class="text-center">Angkatan</th>
 										<th class="text-center">Action</th>
 									</tr>

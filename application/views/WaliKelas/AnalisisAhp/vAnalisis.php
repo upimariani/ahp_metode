@@ -91,6 +91,7 @@
 									<tr>
 										<th class="text-center">No.</th>
 										<th class="text-center">Nama Siswa</th>
+										<th class="text-center">Angkatan Siswa</th>
 										<th class="text-center">Tanggal Proses</th>
 										<th class="text-center">Penilaian</th>
 										<th class="text-center">Hasil</th>

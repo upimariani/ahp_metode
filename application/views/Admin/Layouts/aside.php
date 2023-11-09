@@ -41,12 +41,32 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="<?= base_url('Admin/cSiswa') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cSiswa') {
+																					echo 'active';
+																				}  ?>">
+						<i class="nav-icon fas fa-user-tie"></i>
+						<p>
+							Siswa
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="<?= base_url('Admin/cGuruMapel') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cGuruMapel') {
 																						echo 'active';
 																					}  ?>">
 						<i class="nav-icon fas fa-users"></i>
 						<p>
 							Guru Mata Pelajaran
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= base_url('Admin/cPerPeriode') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cPerPeriode') {
+																						echo 'active';
+																					}  ?>">
+						<i class="nav-icon fas fa-info"></i>
+						<p>
+							Analisis Per Periode
 						</p>
 					</a>
 				</li>

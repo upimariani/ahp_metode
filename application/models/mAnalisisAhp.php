@@ -5,7 +5,7 @@ class mAnalisisAhp extends CI_Model
 {
 	public function siswa()
 	{
-		return $this->db->query("SELECT COUNT(id_nilai)as jml_nilai, SUM(nilai) as rate, nama_siswa, kelas, angkatan, siswa.id_siswa, status FROM `siswa` JOIN nilai_raport ON nilai_raport.id_siswa=siswa.id_siswa WHERE status='0' AND id_user='" . $this->session->userdata('id') . "' GROUP BY siswa.id_siswa")->result();
+		return $this->db->query("SELECT COUNT(id_nilai)as jml_nilai, SUM(nilai) as rate, siswa.nama_siswa, kelas, angkatan, siswa.id_siswa, status FROM `siswa` JOIN nilai_raport ON nilai_raport.nama_siswa=siswa.nama_siswa WHERE status='0' AND id_user='" . $this->session->userdata('id') . "' GROUP BY siswa.id_siswa")->result();
 	}
 	public function save_hasil($data)
 	{
@@ -34,7 +34,11 @@ class mAnalisisAhp extends CI_Model
 	}
 	public function periode()
 	{
-		return $this->db->query("SELECT * FROM `siswa` GROUP BY kelas, angkatan")->result();
+		return $this->db->query("SELECT * FROM `siswa` GROUP BY angkatan")->result();
+	}
+	public function kelas($angkatan)
+	{
+		return $this->db->query("SELECT * FROM `siswa` WHERE angkatan='" . $angkatan . "' GROUP BY kelas ")->result();
 	}
 	public function view_data_periode($kelas, $angkatan)
 	{

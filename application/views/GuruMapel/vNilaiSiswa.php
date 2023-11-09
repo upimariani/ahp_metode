@@ -58,9 +58,14 @@
 											<td><?= $no++ ?></td>
 											<td><?= $value->kelas ?></td>
 											<td><?= $value->angkatan ?></td>
-											<td> <a href="<?= base_url('GuruMapel/cNilaiSiswa/view_siswa/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
+											<td>
+												<a href="<?= base_url('GuruMapel/cNilaiSiswa/viewupload/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
 													<i class="fas fa-eye"></i> View
-												</a></td>
+												</a>
+												<!-- <a href="<?= base_url('GuruMapel/cNilaiSiswa/view_siswa/' . $value->kelas . '/' . $value->angkatan) ?>" class="btn btn-app btn-sm">
+													<i class="fas fa-eye"></i> View
+												</a> -->
+											</td>
 										</tr>
 
 									<?php

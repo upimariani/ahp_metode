@@ -30,7 +30,7 @@
 						</p>
 					</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a href="<?= base_url('WaliKelas/cSiswa') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'WaliKelas' && $this->uri->segment(2) == 'cSiswa') {
 																						echo 'active';
 																					}  ?>">
@@ -39,7 +39,7 @@
 							Siswa
 						</p>
 					</a>
-				</li>
+				</li> -->
 
 
 				<li class="nav-item">
